@@ -1,0 +1,36 @@
+[
+  [
+   {
+      "Standard": "3.9-6.1",
+      "Code": 0,
+      "Text": "正常"
+    },
+    {
+      "Standard": "<3.9",
+      "Code": 1,
+      "Text": "偏低"
+    },
+    {
+      "Standard": ">6.1",
+      "Code": 2,
+      "Text": "偏高"
+    }
+  ],
+  [
+    {
+      "Standard": "6.7-9.4",
+      "Code": 0,
+      "Text": "正常"
+    },
+    {
+      "Standard": "<6.7",
+      "Code": 1,
+      "Text": "偏低"
+    },
+    {
+      "Standard": ">9.4",
+      "Code": 2,
+      "Text": "偏高"
+    }
+  ]
+]

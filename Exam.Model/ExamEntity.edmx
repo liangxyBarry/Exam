@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ExaminationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BloodFat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BloodFat" Type="float" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamDate" Type="datetime" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BloodOxy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BloodOxy" Type="float" />
+          <Property Name="PI" Type="float" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamDate" Type="datetime" />
+          <Property Name="BPM" Type="float" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BloodPressure">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HighPressure" Type="float" />
+          <Property Name="LowPressure" Type="float" />
+          <Property Name="HeartRate" Type="float" />
+          <Property Name="ExamDate" Type="datetime" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BloodSugar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BloodSugar" Type="float" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamDate" Type="datetime" />
+          <Property Name="Meal" Type="int" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Cardiogram">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamDate" Type="datetime" />
+          <Property Name="Cardiogram" Type="varchar" MaxLength="500" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Sex" Type="bit" />
+          <Property Name="Blood" Type="varchar" MaxLength="10" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="Height" Type="float" />
+          <Property Name="ClientIdentity" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="Phone" Type="varchar" MaxLength="100" />
+          <Property Name="UserID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Temperature">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamDate" Type="datetime" />
+          <Property Name="Temperature" Type="float" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="100" />
+          <Property Name="UserID" Type="uniqueidentifier" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UricAcid">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UricAcid" Type="float" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamDate" Type="datetime" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+          <Property Name="Sex" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="200" />
+          <Property Name="Memo" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="ExaminationModelStoreContainer">
+          <EntitySet Name="BloodFat" EntityType="Self.BloodFat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BloodOxy" EntityType="Self.BloodOxy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BloodPressure" EntityType="Self.BloodPressure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BloodSugar" EntityType="Self.BloodSugar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cardiogram" EntityType="Self.Cardiogram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temperature" EntityType="Self.Temperature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UricAcid" EntityType="Self.UricAcid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExaminationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BloodFat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="BloodFat1" Type="Double" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BloodOxy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="BloodOxy1" Type="Double" />
+          <Property Name="PI" Type="Double" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="BPM" Type="Double" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cardiogram">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="Cardiogram1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Boolean" />
+          <Property Name="Blood" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="Height" Type="Double" />
+          <Property Name="ClientIdentity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Temperature">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="Temperature1" Type="Double" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UricAcid">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UricAcid1" Type="Double" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ExaminationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BloodFat" EntityType="Self.BloodFat" />
+          <EntitySet Name="BloodOxy" EntityType="Self.BloodOxy" />
+          <EntitySet Name="Cardiogram" EntityType="Self.Cardiogram" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Temperature" EntityType="Self.Temperature" />
+          <EntitySet Name="UricAcid" EntityType="Self.UricAcid" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="BloodPressure" EntityType="ExaminationModel.BloodPressure" />
+          <EntitySet Name="Token" EntityType="ExaminationModel.Token" />
+          <EntitySet Name="BloodSugar" EntityType="ExaminationModel.BloodSugar" />
+        </EntityContainer>
+        <EntityType Name="BloodPressure">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="HighPressure" Type="Double" />
+          <Property Name="LowPressure" Type="Double" />
+          <Property Name="HeartRate" Type="Double" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Token1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Guid" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BloodSugar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="BloodSugar1" Type="Double" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="Meal" Type="Int32" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExaminationModelStoreContainer" CdmEntityContainer="ExaminationEntities">
+          <EntitySetMapping Name="BloodFat">
+            <EntityTypeMapping TypeName="ExaminationModel.BloodFat">
+              <MappingFragment StoreEntitySet="BloodFat">
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BloodFat1" ColumnName="BloodFat" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BloodOxy">
+            <EntityTypeMapping TypeName="ExaminationModel.BloodOxy">
+              <MappingFragment StoreEntitySet="BloodOxy">
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BloodOxy1" ColumnName="BloodOxy" />
+                <ScalarProperty Name="PI" ColumnName="PI" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="BPM" ColumnName="BPM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cardiogram">
+            <EntityTypeMapping TypeName="ExaminationModel.Cardiogram">
+              <MappingFragment StoreEntitySet="Cardiogram">
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="Cardiogram1" ColumnName="Cardiogram" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ExaminationModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Blood" ColumnName="Blood" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="ClientIdentity" ColumnName="ClientIdentity" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Temperature">
+            <EntityTypeMapping TypeName="ExaminationModel.Temperature">
+              <MappingFragment StoreEntitySet="Temperature">
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="Temperature1" ColumnName="Temperature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UricAcid">
+            <EntityTypeMapping TypeName="ExaminationModel.UricAcid">
+              <MappingFragment StoreEntitySet="UricAcid">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UricAcid1" ColumnName="UricAcid" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ExaminationModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BloodPressure">
+            <EntityTypeMapping TypeName="ExaminationModel.BloodPressure">
+              <MappingFragment StoreEntitySet="BloodPressure">
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="HeartRate" ColumnName="HeartRate" />
+                <ScalarProperty Name="LowPressure" ColumnName="LowPressure" />
+                <ScalarProperty Name="HighPressure" ColumnName="HighPressure" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Token">
+            <EntityTypeMapping TypeName="ExaminationModel.Token">
+              <MappingFragment StoreEntitySet="Token">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Token1" ColumnName="Token" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BloodSugar">
+            <EntityTypeMapping TypeName="ExaminationModel.BloodSugar">
+              <MappingFragment StoreEntitySet="BloodSugar">
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="Meal" ColumnName="Meal" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="BloodSugar1" ColumnName="BloodSugar" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,36 @@
+[
+  [
+   {
+      "Standard": "149-416",
+      "Code": 0,
+      "Text": "正常"
+    },
+    {
+      "Standard": "<149",
+      "Code": 1,
+      "Text": "尿酸偏低"
+    },
+    {
+      "Standard": ">416",
+      "Code": 2,
+      "Text": "痛风风险"
+    }
+  ],
+  [
+   {
+      "Standard": "89-357",
+      "Code": 0,
+      "Text": "正常"
+    },
+    {
+      "Standard": "<89",
+      "Code": 1,
+      "Text": "尿酸偏低"
+    },
+    {
+      "Standard": ">357",
+      "Code": 2,
+      "Text": "痛风风险"
+    }
+  ]
+]

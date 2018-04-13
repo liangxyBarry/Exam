@@ -1,0 +1,70 @@
+﻿[
+  [
+
+    {
+      "Standard": "90-120",
+      "Code": 0,
+      "Text": "理想"
+    },
+    {
+      "Standard": "121-139",
+      "Code": 1,
+      "Text": "正常"
+    },
+    {
+      "Standard": "<90",
+      "Code": 2,
+      "Text": "低血压风险"
+    },
+    {
+      "Standard": "140-159",
+      "Code": 3,
+      "Text": "轻度高血压风险"
+    },
+    {
+      "Standard": "160-179",
+      "Code": 4,
+      "Text": "中度高血压风险"
+    },
+    {
+      "Standard": ">180",
+      "Code": 5,
+      "Text": "重度高血压风险"
+    }
+  ],
+
+  [
+   
+    {
+      "Standard": "60-80",
+      "Code": 0,
+      "Text": "理想"
+    },
+    {
+      "Standard": "81-90",
+      "Code": 1,
+      "Text": "正常"
+    },
+    {
+      "Standard": "<60",
+      "Code": 2,
+      "Text": "低血压风险"
+    },
+    {
+      "Standard": "91-99",
+      "Code": 3,
+      "Text": "轻度高血压风险"
+    },
+    {
+      "Standard": "100-109",
+      "Code": 4,
+      "Text": "中度高血压风险"
+    },
+    {
+      "Standard": ">110",
+      "Code": 5,
+      "Text": "重度高血压风险"
+    }
+  ]
+
+]
