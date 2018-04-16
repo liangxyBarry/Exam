@@ -29,5 +29,9 @@ namespace Examination
             GlobalVars.SettingDir = Server.MapPath("~/Settings");
         }
 
+        protected void Application_Error()
+        {
+            LogHelper.SystemError("Application_Error", Server.GetLastError());
+        }
     }
 }

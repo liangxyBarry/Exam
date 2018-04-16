@@ -18,6 +18,7 @@ namespace WebApi
     {
         public void Configuration(IAppBuilder app)
         {
+            log4net.Config.XmlConfigurator.Configure();
             HttpConfiguration config = new HttpConfiguration();
             ConfigureOAuth(app);
 
@@ -25,6 +26,8 @@ namespace WebApi
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             //app.Use(config);
             //GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            GlobalConfiguration.Configuration.Filters.Add(new WebApiExceptionFilterAttribute());
         }
 
         public void ConfigureOAuth(IAppBuilder app)
