@@ -12,27 +12,31 @@ namespace Examination.Controllers
 {
     public class ClientController : ApiController
     {
-        [HttpPost]
-        public string UserList()
+        public object UserList(int pageSize, int pageNum)
         {
-            var clientList = ClientBLL.GetClient(OnlineUser.User.ID);
-            return JsonConvert.SerializeObject(clientList);
+            var clientList = ClientBLL.GetClient(OnlineUser.User.ID, pageSize, pageNum);
+            return clientList;
         }
 
-        [HttpPost]
-        public string AddClient(string clientJson)
+        public object SearchClient(int pageSize, int pageNum, string key)
+        {
+            var clientList = ClientBLL.SearchClient(OnlineUser.User.ID, pageSize, pageNum, key);
+            return clientList;
+        }
+
+
+        public object AddClient(string clientJson)
         {
             var client = JsonConvert.DeserializeObject<Client>(clientJson);
             ClientBLL.CreateClient(client);
-            return JsonConvert.SerializeObject(new { Success = true });
+            return new { Success = true };
         }
 
-        [HttpPost]
-        public string UpdateClient(string clientJson)
+        public object UpdateClient(string clientJson)
         {
             var client = JsonConvert.DeserializeObject<Client>(clientJson);
             ClientBLL.UpdateClient(client);
-            return JsonConvert.SerializeObject(new { Success = true });
+            return new { Success = true };
         }
     }
 }
