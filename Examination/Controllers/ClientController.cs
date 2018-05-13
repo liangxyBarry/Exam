@@ -14,25 +14,33 @@ namespace Examination.Controllers
     {
         public object UserList(int pageSize, int pageNum)
         {
-            var clientList = ClientBLL.GetClient(OnlineUser.User.ID, pageSize, pageNum);
-            return clientList;
+            Tuple<List<Client>, int> ret = ClientBLL.GetClient(OnlineUser.User.ID, pageSize, pageNum);
+            return new { Result = ret.Item1, TotalAmount = ret.Item2 };
         }
 
         public object SearchClient(int pageSize, int pageNum, string key)
         {
-            var clientList = ClientBLL.SearchClient(OnlineUser.User.ID, pageSize, pageNum, key);
-            return clientList;
+            Tuple<List<Client>, int> ret = ClientBLL.SearchClient(OnlineUser.User.ID, pageSize, pageNum, key);
+            return new { Result = ret.Item1, TotalAmount = ret.Item2 };
         }
 
 
         public object AddClient([FromBody]Client client)
         {
+            if (ClientBLL.CheckIsDuplicate(Guid.Empty, client.ClientIdentity))
+            {
+                return new { Success = false, Duplicated = true };
+            }
             ClientBLL.CreateClient(client);
             return new { Success = true };
         }
 
         public object UpdateClient([FromBody]Client client)
         {
+            if (ClientBLL.CheckIsDuplicate(client.ID, client.ClientIdentity))
+            {
+                return new { Success = false, Duplicated = true };
+            }
             ClientBLL.UpdateClient(client);
             return new { Success = true };
         }

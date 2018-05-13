@@ -11,24 +11,40 @@ namespace Exam.BLL
 {
     public class ClientBLL
     {
-        public static List<Client> GetClient(Guid userId, int pageSize, int pageNum)
+        public static Tuple<List<Client>,int> GetClient(Guid userId, int pageSize, int pageNum)
         {
             using (var ctx = new ExaminationEntities())
             {
-                return ctx.Client.Where(c => c.UserID == userId).OrderBy(c => c.Name).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+                var list = ctx.Client.Where(c => c.UserID == userId).OrderBy(c => c.Name);
+                int amt = list.Count();
+                var retList= list.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+                return new Tuple<List<Client>, int>(retList, amt);
             }
         }
 
-        public static List<Client> SearchClient(Guid userId, int pageSize, int pageNum,  string key)
+        public static Tuple<List<Client>,int> SearchClient(Guid userId, int pageSize, int pageNum,  string key)
         {
             using (var ctx = new ExaminationEntities())
             {
-                return ctx.Client.Where(c => c.UserID == userId &&
-                (
-                (c.Name??"").IndexOf(key, StringComparison.CurrentCultureIgnoreCase)>=0
-                || (c.ClientIdentity??"").IndexOf(key, StringComparison.CurrentCultureIgnoreCase) >= 0
-                )).OrderBy(c => c.Name).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+                var list = ctx.Client.Where(c => c.UserID == userId &&
+                 (
+                 (c.Name ?? "").IndexOf(key, StringComparison.CurrentCultureIgnoreCase) >= 0
+                 || (c.ClientIdentity ?? "").IndexOf(key, StringComparison.CurrentCultureIgnoreCase) >= 0
+                 )).OrderBy(c => c.Name);
+                int amt = list.Count();
+                var retList=list.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+                return new Tuple<List<Client>, int>(retList, amt);
             }
+        }
+
+        public static bool CheckIsDuplicate(Guid id, string identity)
+        {
+            using (var ctx = new ExaminationEntities())
+            {
+                var exist = ctx.Client.FirstOrDefault(c =>  id != c.ID && identity.Trim() == c.ClientIdentity.Trim());
+                return exist != null;
+            }
+
         }
 
         public static void CreateClient(Client client)
