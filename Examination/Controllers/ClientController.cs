@@ -25,16 +25,14 @@ namespace Examination.Controllers
         }
 
 
-        public object AddClient(string clientJson)
+        public object AddClient([FromBody]Client client)
         {
-            var client = JsonConvert.DeserializeObject<Client>(clientJson);
             ClientBLL.CreateClient(client);
             return new { Success = true };
         }
 
-        public object UpdateClient(string clientJson)
+        public object UpdateClient([FromBody]Client client)
         {
-            var client = JsonConvert.DeserializeObject<Client>(clientJson);
             ClientBLL.UpdateClient(client);
             return new { Success = true };
         }
