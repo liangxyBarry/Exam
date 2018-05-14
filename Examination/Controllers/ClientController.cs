@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace Examination.Controllers
 {
+    [Authorize]
     public class ClientController : ApiController
     {
         public object UserList(int pageSize, int pageNum)
@@ -42,6 +43,12 @@ namespace Examination.Controllers
                 return new { Success = false, Duplicated = true };
             }
             ClientBLL.UpdateClient(client);
+            return new { Success = true };
+        }
+
+        public object DeleteClient(Guid id)
+        {
+            ClientBLL.DeleteClient(id, OnlineUser.User.ID);
             return new { Success = true };
         }
     }

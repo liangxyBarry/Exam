@@ -28,12 +28,12 @@ namespace Exam.Model
         public virtual DbSet<BloodFat> BloodFat { get; set; }
         public virtual DbSet<BloodOxy> BloodOxy { get; set; }
         public virtual DbSet<Cardiogram> Cardiogram { get; set; }
-        public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Temperature> Temperature { get; set; }
         public virtual DbSet<UricAcid> UricAcid { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<BloodPressure> BloodPressure { get; set; }
         public virtual DbSet<Token> Token { get; set; }
         public virtual DbSet<BloodSugar> BloodSugar { get; set; }
+        public virtual DbSet<Client> Client { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace Exam.Model
     {
         public System.Guid ID { get; set; }
         public string Name { get; set; }
-        public Nullable<bool> Sex { get; set; }
         public string Blood { get; set; }
         public Nullable<double> Weight { get; set; }
         public Nullable<double> Height { get; set; }
@@ -25,5 +24,6 @@ namespace Exam.Model
         public string Phone { get; set; }
         public Nullable<System.Guid> UserID { get; set; }
         public Nullable<double> Age { get; set; }
+        public Nullable<int> Sex { get; set; }
     }
 }

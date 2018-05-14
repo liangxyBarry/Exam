@@ -58,6 +58,16 @@ namespace Exam.BLL
             }
         }
 
+        public static void DeleteClient(Guid id, Guid userId)
+        {
+            using (var ctx = new ExaminationEntities())
+            {
+                var exist = ctx.Client.FirstOrDefault(c => id != c.ID && c.UserID == userId);
+            }
+
+        }
+
+
         public static void UpdateClient(Client client)
         {
             using (var ctx = new ExaminationEntities())
