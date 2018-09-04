@@ -89,5 +89,10 @@ namespace Examination.Controllers
             moisture, boneMass, subcutaneousFat, BMR, proteinRate, physicalAge, weightScore,
             clientId, examRet);
         }
+
+        public List<object> ViewHistory(string name, string clientId, DateTime fromDate, DateTime endDate)
+        {
+            return ExamBLL.ViewHistory(name, clientId, fromDate, endDate);
+        }
     }
 }

@@ -2,8 +2,10 @@
 using Exam.Model;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -174,6 +176,55 @@ namespace Exam.BLL
         {
 
         }
+
+        public static List<object> ViewHistory(string tableName, string clientId, DateTime fromDate, DateTime endDate)
+        {
+            using (var ctx = new ExaminationEntities())
+            {
+                Type ctxType = ctx.GetType();
+                var tblProp = ctxType.GetProperty(tableName);
+                object tblObj = tblProp.GetValue(ctx, null);
+                var dbRecords = GetExistRecord(tblObj, "ClientID", clientId);
+                IEnumerable records = dbRecords as IEnumerable;
+                List<object> ret = new List<object>();
+                foreach (object item in records)
+                {
+                    DateTime examDate = GetExamDate(item);
+                    if(examDate<=endDate&& examDate >= fromDate)
+                    {
+                        ret.Add(item);
+                    }
+                }
+                return ret;
+            }
+        }
+
+        private static DateTime GetExamDate(object obj)
+        {
+            Type t = obj.GetType();
+            DateTime? val = (DateTime?)t.GetProperty("ExamDate").GetValue(obj, null);
+            return val.Value;
+        }
+
+        public static object GetExistRecord(object tableObj, string keyName, string keyVal)
+        {
+            Type type = tableObj.GetType();
+            var methods = typeof(Queryable).GetMethods();
+            var firstOrDefaultMethod = methods.FirstOrDefault(m => m.Name == "Where" && m.GetParameters().Count() == 2);
+            var entityType = type.GetGenericArguments().First();
+            var keyProp = entityType.GetProperty(keyName);
+            Guid key = Guid.Empty;
+            Guid.TryParse(keyVal, out key);
+            ParameterExpression parameter = Expression.Parameter(entityType, keyName);
+            MemberExpression property = Expression.Property(parameter, keyName);
+            ConstantExpression rightSide = Expression.Constant(key, keyProp.PropertyType);
+            BinaryExpression operation = Expression.Equal(property, rightSide);
+            Type delegateType = typeof(Func<,>).MakeGenericType(entityType, typeof(bool));
+            LambdaExpression predicate = Expression.Lambda(delegateType, operation, parameter);
+            var method = firstOrDefaultMethod.MakeGenericMethod(entityType);
+            return method.Invoke(null, new object[] { tableObj, predicate });
+        }
+
 
     }
 }
