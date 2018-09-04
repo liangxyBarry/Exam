@@ -38,7 +38,7 @@ namespace Exam.BLL
             }
         }
 
-        public static void SaveBloodPressure(float highVal, float lowVal, string clientId, ExamStandardModel examRet)
+        public static void SaveBloodPressure(float highVal, float lowVal, float heartRate, string clientId, ExamStandardModel examRet)
         {
             using (var ctx = new ExaminationEntities())
             {
@@ -47,6 +47,7 @@ namespace Exam.BLL
                 model.ExamDate = DateTime.Now;
                 model.HighPressure = highVal;
                 model.LowPressure = lowVal;
+                model.HeartRate = heartRate;
                 model.ClientID = Guid.Parse(clientId);
                 model.ExamRet = JsonConvert.SerializeObject(examRet);
                 ctx.BloodPressure.Add(model);
