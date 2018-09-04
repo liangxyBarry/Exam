@@ -16,5 +16,17 @@ namespace Exam.BLL
                 return ctx.Users.FirstOrDefault(u => u.UserName.ToLower() == (userName??"").ToLower() && u.Password == pwd);
             }
         }
+
+        public static void UpdatePassword(Guid userId, string newPwd)
+        {
+              using (var ctx = new ExaminationEntities())
+            {
+                var user = ctx.Users.FirstOrDefault(u => u.ID== userId);
+                if (user != null)
+                {
+                    user.Password = newPwd;
+                }
+            }
+        }
     }
 }

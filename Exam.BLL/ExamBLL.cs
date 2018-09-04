@@ -11,34 +11,34 @@ namespace Exam.BLL
 {
     public class ExamBLL
     {
-        public static ExamStandardModel SimpleExam(string settingName, float value)
-        {
-            string settings = ExamHelper.GetExamSettings(settingName);
-            var standards = JsonConvert.DeserializeObject<List<ExamStandardModel>>(settings);
-            ExamStandardModel st = ExamHelper.GetCurrentStandard(value, standards);
-            return st;
-        }
+        //public static ExamResultModel SimpleExam(string settingName, float value)
+        //{
+        //    string settings = ExamHelper.GetExamSettings(settingName);
+        //    var standards = JsonConvert.DeserializeObject<List<ExamResultModel>>(settings);
+        //    ExamResultModel st = ExamHelper.GetCurrentStandard(value, standards);
+        //    return st;
+        //}
 
 
-        public static ExamStandardModel ExamBloodPressure(float highVal, float lowVal)
-        {
-            string settings = ExamHelper.GetExamSettings("bloodpressure");
-            var standards = JsonConvert.DeserializeObject<List<List<ExamStandardModel>>>(settings);
-            List<ExamStandardModel> highStandards = standards[0];
-            List<ExamStandardModel> lowStandards = standards[1];
-            ExamStandardModel highSt = ExamHelper.GetCurrentStandard(highVal, highStandards);
-            ExamStandardModel lowSt = ExamHelper.GetCurrentStandard(lowVal, lowStandards);
-            if (highSt.Code > lowSt.Code)
-            {
-                return highSt;
-            }
-            else
-            {
-                return lowSt;
-            }
-        }
+        //public static ExamResultModel ExamBloodPressure(float highVal, float lowVal)
+        //{
+        //    string settings = ExamHelper.GetExamSettings("bloodpressure");
+        //    var standards = JsonConvert.DeserializeObject<List<List<ExamResultModel>>>(settings);
+        //    List<ExamResultModel> highStandards = standards[0];
+        //    List<ExamResultModel> lowStandards = standards[1];
+        //    ExamResultModel highSt = ExamHelper.GetCurrentStandard(highVal, highStandards);
+        //    ExamResultModel lowSt = ExamHelper.GetCurrentStandard(lowVal, lowStandards);
+        //    if (highSt.Code > lowSt.Code)
+        //    {
+        //        return highSt;
+        //    }
+        //    else
+        //    {
+        //        return lowSt;
+        //    }
+        //}
 
-        public static void SaveBloodPressure(float highVal, float lowVal, float heartRate, string clientId, ExamStandardModel examRet)
+        public static void SaveBloodPressure(float highVal, float lowVal, float heartRate, string clientId, ExamResultModel examRet)
         {
             using (var ctx = new ExaminationEntities())
             {
@@ -55,16 +55,16 @@ namespace Exam.BLL
             }
         }
 
-        public static ExamStandardModel ExamBloodSugar(float value, bool isAfterMeal)
-        {
-            string settings = ExamHelper.GetExamSettings("bloodsugar");
-            var allSts = JsonConvert.DeserializeObject<List<List<ExamStandardModel>>>(settings);
-            List<ExamStandardModel> standards = isAfterMeal ? allSts[1] : allSts[0];
-            ExamStandardModel st = ExamHelper.GetCurrentStandard(value, standards);
-            return st;
-        }
+        //public static ExamResultModel ExamBloodSugar(float value, bool isAfterMeal)
+        //{
+        //    string settings = ExamHelper.GetExamSettings("bloodsugar");
+        //    var allSts = JsonConvert.DeserializeObject<List<List<ExamResultModel>>>(settings);
+        //    List<ExamResultModel> standards = isAfterMeal ? allSts[1] : allSts[0];
+        //    ExamResultModel st = ExamHelper.GetCurrentStandard(value, standards);
+        //    return st;
+        //}
 
-        public static void SaveBloodSugar(float value, bool isAfterMeal, string clientId, ExamStandardModel examRet)
+        public static void SaveBloodSugar(float value, int status, string clientId, ExamResultModel examRet)
         {
             using (var ctx = new ExaminationEntities())
             {
@@ -72,7 +72,7 @@ namespace Exam.BLL
                 model.ID = Guid.NewGuid();
                 model.ExamDate = DateTime.Now;
                 model.BloodSugar1 = value;
-                model.Meal = isAfterMeal ? 1 : 0;
+                model.Meal = status;
                 model.ClientID =clientId.ToGuid();
                 model.ExamRet = JsonConvert.SerializeObject(examRet);
                 ctx.BloodSugar.Add(model);
@@ -81,7 +81,7 @@ namespace Exam.BLL
         }
 
 
-        public static void SaveBloodFat(float val, string clientId, ExamStandardModel examRet)
+        public static void SaveBloodFat(float val, string clientId, ExamResultModel examRet)
         {
             using (var ctx = new ExaminationEntities())
             {
@@ -113,16 +113,16 @@ namespace Exam.BLL
             }
         }
 
-        public static ExamStandardModel ExamUricAcid(float val, int sex)
-        {
-            string settings = ExamHelper.GetExamSettings("uricacid");
-            var allSts = JsonConvert.DeserializeObject<List<List<ExamStandardModel>>>(settings);
-            List<ExamStandardModel> standards = sex == 0 ? allSts[0] : allSts[1];
-            ExamStandardModel st = ExamHelper.GetCurrentStandard(val, standards);
-            return st;
-        }
+        //public static ExamResultModel ExamUricAcid(float val, int sex)
+        //{
+        //    string settings = ExamHelper.GetExamSettings("uricacid");
+        //    var allSts = JsonConvert.DeserializeObject<List<List<ExamResultModel>>>(settings);
+        //    List<ExamResultModel> standards = sex == 0 ? allSts[0] : allSts[1];
+        //    ExamResultModel st = ExamHelper.GetCurrentStandard(val, standards);
+        //    return st;
+        //}
 
-        public static void SaveUricAcid(float val, int sex, string clientId, ExamStandardModel examRet)
+        public static void SaveUricAcid(float val, int sex, string clientId, ExamResultModel examRet)
         {
             using (var ctx = new ExaminationEntities())
             {
@@ -138,7 +138,7 @@ namespace Exam.BLL
             }
         }
 
-        public static void SaveTemperature(float val, string clientId, ExamStandardModel examRet)
+        public static void SaveTemperature(float val, string clientId, ExamResultModel examRet)
         {
             using (var ctx = new ExaminationEntities())
             {
@@ -166,6 +166,13 @@ namespace Exam.BLL
                 ctx.Cardiogram.Add(model);
                 ctx.SaveChanges();
             }
+        }
+
+        public static void SaveBody(string weightsum, string BMI, string fatRate, string muscle,
+            string moisture, string boneMass, string subcutaneousFat, string BMR, string proteinRate, string physicalAge, string weightScore,
+            string clientId, ExamResultModel examRet)
+        {
+
         }
 
     }

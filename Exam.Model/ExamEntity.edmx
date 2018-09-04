@@ -74,7 +74,7 @@
           <Property Name="Phone" Type="varchar" MaxLength="100" />
           <Property Name="UserID" Type="uniqueidentifier" />
           <Property Name="Age" Type="float" />
-          <Property Name="Sex" Type="int" />
+          <Property Name="Sex" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Temperature">
           <Key>
@@ -253,7 +253,7 @@
           <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="Guid" />
           <Property Name="Age" Type="Double" />
-          <Property Name="Sex" Type="Int32" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

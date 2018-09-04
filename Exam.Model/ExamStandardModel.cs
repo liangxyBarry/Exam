@@ -14,4 +14,13 @@ namespace Exam.Model
 
         public string Text { get; set; }
     }
+
+    public class ExamResultModel
+    {
+        public string Result { get; set; }
+
+        public string Risk { get; set; }
+
+        public string Advice { get; set; }
+    }
 }

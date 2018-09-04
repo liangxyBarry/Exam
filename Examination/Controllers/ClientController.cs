@@ -46,7 +46,7 @@ namespace Examination.Controllers
             return new { Success = true };
         }
 
-        public object DeleteClient(Guid id)
+        public object RemoveClient(Guid id)
         {
             ClientBLL.DeleteClient(id, OnlineUser.User.ID);
             return new { Success = true };
