@@ -94,5 +94,10 @@ namespace Examination.Controllers
         {
             return ExamBLL.ViewHistory(name, clientId, fromDate, endDate);
         }
+
+        public object GetAllExamResult(string clientId)
+        {
+            return ExamBLL.GetAllExamResult(clientId);
+        }
     }
 }

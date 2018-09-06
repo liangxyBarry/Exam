@@ -63,6 +63,9 @@
     <Compile Include="BloodSugar.cs">
       <DependentUpon>ExamEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Body.cs">
+      <DependentUpon>ExamEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Cardiogram.cs">
       <DependentUpon>ExamEntity.tt</DependentUpon>
     </Compile>

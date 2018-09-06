@@ -174,7 +174,27 @@ namespace Exam.BLL
             string moisture, string boneMass, string subcutaneousFat, string BMR, string proteinRate, string physicalAge, string weightScore,
             string clientId, ExamResultModel examRet)
         {
-
+            using (var ctx = new ExaminationEntities())
+            {
+                var model = new Body();
+                model.ID = Guid.NewGuid();
+                model.ExamDate = DateTime.Now;
+                model.WeightSum = weightsum;
+                model.ClientID = clientId.ToGuid();
+                model.BMI = BMI;
+                model.FatRate = fatRate;
+                model.Muscle = muscle;
+                model.Moisture = moisture;
+                model.BoneMass = boneMass;
+                model.SubcutaneousFat = subcutaneousFat;
+                model.BMR = BMR;
+                model.ProteinRate = proteinRate;
+                model.PhysicalAge = physicalAge;
+                model.WeightScore = weightScore;
+                model.ExamRet = JsonConvert.SerializeObject(examRet);
+                ctx.Body.Add(model);
+                ctx.SaveChanges();
+            }
         }
 
         public static List<object> ViewHistory(string tableName, string clientId, DateTime fromDate, DateTime endDate)
@@ -225,6 +245,22 @@ namespace Exam.BLL
             return method.Invoke(null, new object[] { tableObj, predicate });
         }
 
+        public static object GetAllExamResult(string clientId)
+        {
+            Guid clientIdGuid = clientId.ToGuid();
+            using (var ctx = new ExaminationEntities())
+            {
+                var bloodFat = ctx.BloodFat.Where(b=>b.ClientID==clientIdGuid).ToList();
+                var bloodOxy = ctx.BloodOxy.Where(b => b.ClientID == clientIdGuid).ToList();
+                var bloodPressure = ctx.BloodPressure.Where(b => b.ClientID == clientIdGuid).ToList();
+                var bloodSugar = ctx.BloodSugar.Where(b => b.ClientID == clientIdGuid).ToList();
+                var body = ctx.Body.Where(b => b.ClientID == clientIdGuid).ToList();
+                var cardiogram = ctx.Cardiogram.Where(b => b.ClientID == clientIdGuid).ToList();
+                var temperature = ctx.Temperature.Where(b => b.ClientID == clientIdGuid).ToList();
+                var uricAcid = ctx.UricAcid.Where(b => b.ClientID == clientIdGuid).ToList();
+                return new { bloodFat, bloodOxy, bloodPressure, bloodSugar , body, cardiogram, temperature , uricAcid };
+            }
+        }
 
     }
 }

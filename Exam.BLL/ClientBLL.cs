@@ -28,8 +28,8 @@ namespace Exam.BLL
             {
                 var list = ctx.Client.Where(c => c.UserID == userId &&
                  (
-                 (c.Name ?? "").IndexOf(key, StringComparison.CurrentCultureIgnoreCase) >= 0
-                 || (c.ClientIdentity ?? "").IndexOf(key, StringComparison.CurrentCultureIgnoreCase) >= 0
+                 (c.Name ?? "").ToLower().Contains(key.ToLower())
+                 || (c.ClientIdentity ?? "").ToLower().Contains(key.ToLower())
                  )).OrderBy(c => c.Name);
                 int amt = list.Count();
                 var retList=list.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();

@@ -50,6 +50,26 @@
           <Property Name="Meal" Type="int" />
           <Property Name="ExamRet" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="Body">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WeightSum" Type="varchar" MaxLength="50" />
+          <Property Name="BMI" Type="varchar" MaxLength="50" />
+          <Property Name="FatRate" Type="varchar" MaxLength="50" />
+          <Property Name="Muscle" Type="varchar" MaxLength="50" />
+          <Property Name="Moisture" Type="varchar" MaxLength="50" />
+          <Property Name="BoneMass" Type="varchar" MaxLength="50" />
+          <Property Name="SubcutaneousFat" Type="varchar" MaxLength="50" />
+          <Property Name="BMR" Type="varchar" MaxLength="50" />
+          <Property Name="ProteinRate" Type="varchar" MaxLength="50" />
+          <Property Name="PhysicalAge" Type="varchar" MaxLength="50" />
+          <Property Name="WeightScore" Type="varchar" MaxLength="50" />
+          <Property Name="ClientID" Type="uniqueidentifier" />
+          <Property Name="ExamRet" Type="varchar(max)" />
+          <Property Name="ExamDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Cardiogram">
           <Key>
             <PropertyRef Name="ID" />
@@ -121,6 +141,7 @@
           <EntitySet Name="BloodOxy" EntityType="Self.BloodOxy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodPressure" EntityType="Self.BloodPressure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodSugar" EntityType="Self.BloodSugar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Body" EntityType="Self.Body" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cardiogram" EntityType="Self.Cardiogram" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Temperature" EntityType="Self.Temperature" Schema="dbo" store:Type="Tables" />
@@ -206,6 +227,7 @@
           <EntitySet Name="Token" EntityType="ExaminationModel.Token" />
           <EntitySet Name="BloodSugar" EntityType="ExaminationModel.BloodSugar" />
           <EntitySet Name="Client" EntityType="ExaminationModel.Client" />
+          <EntitySet Name="Body" EntityType="ExaminationModel.Body" />
         </EntityContainer>
         <EntityType Name="BloodPressure">
           <Key>
@@ -254,6 +276,27 @@
           <Property Name="UserID" Type="Guid" />
           <Property Name="Age" Type="Double" />
           <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Body">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="WeightSum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BMI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatRate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Muscle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Moisture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BoneMass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubcutaneousFat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BMR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProteinRate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhysicalAge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WeightScore" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClientId" Type="Guid" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientID" Type="Guid" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -378,6 +421,27 @@
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="Blood" ColumnName="Blood" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Body">
+            <EntityTypeMapping TypeName="ExaminationModel.Body">
+              <MappingFragment StoreEntitySet="Body">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="WeightScore" ColumnName="WeightScore" />
+                <ScalarProperty Name="PhysicalAge" ColumnName="PhysicalAge" />
+                <ScalarProperty Name="ProteinRate" ColumnName="ProteinRate" />
+                <ScalarProperty Name="BMR" ColumnName="BMR" />
+                <ScalarProperty Name="SubcutaneousFat" ColumnName="SubcutaneousFat" />
+                <ScalarProperty Name="BoneMass" ColumnName="BoneMass" />
+                <ScalarProperty Name="Moisture" ColumnName="Moisture" />
+                <ScalarProperty Name="Muscle" ColumnName="Muscle" />
+                <ScalarProperty Name="FatRate" ColumnName="FatRate" />
+                <ScalarProperty Name="BMI" ColumnName="BMI" />
+                <ScalarProperty Name="WeightSum" ColumnName="WeightSum" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
