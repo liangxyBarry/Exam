@@ -13,7 +13,13 @@ namespace Examination.Controllers
         public object ChangePassword(string pwd)
         {
             UserBLL.UpdatePassword(OnlineUser.User.ID, pwd);
-            return new { Success = true };
+            return new { Result = true };
+        }
+
+        public object AddAdvice(string advice)
+        {
+            UserBLL.AddUserAdvice(OnlineUser.User.ID, advice);
+            return new { Result = true };
         }
     }
 }

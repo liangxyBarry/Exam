@@ -19,13 +19,26 @@ namespace Exam.BLL
 
         public static void UpdatePassword(Guid userId, string newPwd)
         {
-              using (var ctx = new ExaminationEntities())
+            using (var ctx = new ExaminationEntities())
             {
-                var user = ctx.Users.FirstOrDefault(u => u.ID== userId);
+                var user = ctx.Users.FirstOrDefault(u => u.ID == userId);
                 if (user != null)
                 {
                     user.Password = newPwd;
                 }
+            }
+        }
+
+        public static void AddUserAdvice(Guid userId, string userAdvice)
+        {
+            using (var ctx = new ExaminationEntities())
+            {
+                var advice = new Advice();
+                advice.ID = Guid.NewGuid();
+                advice.UserID = userId;
+                advice.Advice1 = userAdvice;
+                ctx.Advice.Add(advice);
+                ctx.SaveChanges();
             }
         }
     }

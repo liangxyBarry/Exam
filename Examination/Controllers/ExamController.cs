@@ -24,7 +24,7 @@ namespace Examination.Controllers
             // var examRet = ExamBLL.ExamBloodPressure(highVal, lowVal);
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodPressure(highVal, lowVal, heartRate, clientId, examRet);
-            return examRet;
+            return new { Result = true };
         }
 
 
@@ -33,7 +33,7 @@ namespace Examination.Controllers
             //var examRet = ExamBLL.ExamBloodSugar(value, status);
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodSugar(value, status, clientId, examRet);
-            return examRet;
+            return new { Result = true };
         }
 
 
@@ -42,7 +42,7 @@ namespace Examination.Controllers
             //var examRet = ExamBLL.SimpleExam("bloodfat", value);
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodFat(value, clientId, examRet);
-            return examRet;
+            return new { Result = true };
         }
 
         public object ExamBloodOxy(float value, float bpm, float pi, string clientId, string result, string risk, string advice)
@@ -52,7 +52,7 @@ namespace Examination.Controllers
             //var examRet = new { Oxy = oxyRet, BMP = bmpRet };
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodOxy(value, bpm, pi, clientId, examRet);
-            return examRet; 
+            return new { Result = true };
         }
 
         public object ExamUricAcid(float value, int sex, string clientId, string result, string risk, string advice)
@@ -60,7 +60,7 @@ namespace Examination.Controllers
             //var examRet = ExamBLL.ExamUricAcid(value, sex);
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveUricAcid(value, sex, clientId, examRet);
-            return examRet;
+            return new { Result = true };
         }
 
         public object ExamTemperature(float value, string clientId, string result, string risk, string advice)
@@ -68,7 +68,7 @@ namespace Examination.Controllers
             //var examRet = ExamBLL.SimpleExam("temperature", value);
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveTemperature(value, clientId, examRet);
-            return examRet;
+            return new { Result = true };
         }
 
         public object ExamCardiogram(int[] value, string clientId, string result, string risk, string advice)
@@ -76,10 +76,10 @@ namespace Examination.Controllers
             var examRet = GetResultModel(result, risk, advice);
             string dbVal = JsonConvert.SerializeObject(value);
             ExamBLL.SaveCardiogram(dbVal, clientId);
-            return value;
+            return new { Result = true };
         }
 
-        public void ExamBody(string weightsum, string BMI, string fatRate, string muscle, 
+        public object ExamBody(string weightsum, string BMI, string fatRate, string muscle, 
             string moisture, string boneMass, string subcutaneousFat, string BMR, string proteinRate, string physicalAge, string weightScore,
             string clientId, string result, string risk, string advice
             )
@@ -88,6 +88,7 @@ namespace Examination.Controllers
             ExamBLL.SaveBody(weightsum, BMI, fatRate, muscle,
             moisture, boneMass, subcutaneousFat, BMR, proteinRate, physicalAge, weightScore,
             clientId, examRet);
+            return new { Result = true };
         }
 
         public List<object> ViewHistory(string name, string clientId, DateTime fromDate, DateTime endDate)
