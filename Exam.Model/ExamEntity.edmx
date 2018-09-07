@@ -236,8 +236,8 @@
           <EntitySet Name="Token" EntityType="ExaminationModel.Token" />
           <EntitySet Name="BloodSugar" EntityType="ExaminationModel.BloodSugar" />
           <EntitySet Name="Client" EntityType="ExaminationModel.Client" />
-          <EntitySet Name="Body" EntityType="ExaminationModel.Body" />
           <EntitySet Name="Advice" EntityType="ExaminationModel.Advice" />
+          <EntitySet Name="Body" EntityType="ExaminationModel.Body" />
         </EntityContainer>
         <EntityType Name="BloodPressure">
           <Key>
@@ -287,6 +287,14 @@
           <Property Name="Age" Type="Double" />
           <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Advice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Guid" />
+          <Property Name="Advice1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Body">
           <Key>
             <PropertyRef Name="ID" />
@@ -303,18 +311,9 @@
           <Property Name="ProteinRate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PhysicalAge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="WeightScore" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ClientId" Type="Guid" />
+          <Property Name="ClientID" Type="Guid" />
           <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ExamDate" Type="DateTime" Precision="3" />
-          <Property Name="ClientID" Type="Guid" />
-        </EntityType>
-        <EntityType Name="Advice">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="UserID" Type="Guid" />
-          <Property Name="Advice1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -443,12 +442,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Advice">
+            <EntityTypeMapping TypeName="ExaminationModel.Advice">
+              <MappingFragment StoreEntitySet="Advice">
+                <ScalarProperty Name="Advice1" ColumnName="Advice" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Body">
             <EntityTypeMapping TypeName="ExaminationModel.Body">
               <MappingFragment StoreEntitySet="Body">
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
                 <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="WeightScore" ColumnName="WeightScore" />
                 <ScalarProperty Name="PhysicalAge" ColumnName="PhysicalAge" />
                 <ScalarProperty Name="ProteinRate" ColumnName="ProteinRate" />
@@ -460,15 +468,6 @@
                 <ScalarProperty Name="FatRate" ColumnName="FatRate" />
                 <ScalarProperty Name="BMI" ColumnName="BMI" />
                 <ScalarProperty Name="WeightSum" ColumnName="WeightSum" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Advice">
-            <EntityTypeMapping TypeName="ExaminationModel.Advice">
-              <MappingFragment StoreEntitySet="Advice">
-                <ScalarProperty Name="Advice1" ColumnName="Advice" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

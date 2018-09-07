@@ -35,7 +35,7 @@ namespace Exam.Model
         public virtual DbSet<Token> Token { get; set; }
         public virtual DbSet<BloodSugar> BloodSugar { get; set; }
         public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<Body> Body { get; set; }
         public virtual DbSet<Advice> Advice { get; set; }
+        public virtual DbSet<Body> Body { get; set; }
     }
 }
