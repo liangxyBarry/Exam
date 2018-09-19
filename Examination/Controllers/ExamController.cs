@@ -1,6 +1,7 @@
 ﻿using Exam.BLL;
 using Exam.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,11 +72,16 @@ namespace Examination.Controllers
             return new { Result = true };
         }
 
-        public object ExamCardiogram(int[] value, string clientId, string result, string risk, string advice)
+        public object ExamCardiogram(dynamic obj)
         {
+            var value =(JArray) obj.value;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
-            string dbVal = JsonConvert.SerializeObject(value);
-            ExamBLL.SaveCardiogram(dbVal, clientId);
+            string dbVal = "["+String.Join(",",value.ToArray().Select(a => a.ToString()).ToArray())+"]";
+            ExamBLL.SaveCardiogram(dbVal, clientId, examRet);
             return new { Result = true };
         }
 
@@ -91,11 +97,13 @@ namespace Examination.Controllers
             return new { Result = true };
         }
 
+        [HttpPost]
         public List<object> ViewHistory(string name, string clientId, DateTime fromDate, DateTime endDate)
         {
             return ExamBLL.ViewHistory(name, clientId, fromDate, endDate);
         }
 
+        [HttpPost]
         public object GetAllExamResult(string clientId)
         {
             return ExamBLL.GetAllExamResult(clientId);

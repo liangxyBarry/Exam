@@ -155,7 +155,7 @@ namespace Exam.BLL
             }
         }
 
-        public static void SaveCardiogram(string val, string clientId)
+        public static void SaveCardiogram(string val, string clientId, ExamResultModel examRet)
         {
             using (var ctx = new ExaminationEntities())
             {
@@ -164,7 +164,7 @@ namespace Exam.BLL
                 model.ExamDate = DateTime.Now;
                 model.Cardiogram1 = val;
                 model.ClientID = clientId.ToGuid();
-                model.ExamRet = val;
+                model.ExamRet = JsonConvert.SerializeObject(examRet);
                 ctx.Cardiogram.Add(model);
                 ctx.SaveChanges();
             }
