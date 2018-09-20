@@ -72,6 +72,7 @@ namespace Examination.Controllers
             return new { Result = true };
         }
 
+        [HttpPost]
         public object ExamCardiogram(string value, string clientId, string result,string risk,string advice)
         {
             var examRet = GetResultModel(result, risk, advice);
@@ -98,9 +99,9 @@ namespace Examination.Controllers
         }
 
         [HttpPost]
-        public object GetAllExamResult(string clientId)
+        public object GetAllExamResult(string clientId, int pageNum, int pageSize)
         {
-            return ExamBLL.GetAllExamResult(clientId);
+            return ExamBLL.GetAllExamResult(clientId, pageNum, pageSize);
         }
     }
 }

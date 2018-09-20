@@ -245,9 +245,10 @@ namespace Exam.BLL
             return method.Invoke(null, new object[] { tableObj, predicate });
         }
 
-        public static object GetAllExamResult(string clientId)
+        public static List<object> GetAllExamResult(string clientId, int pageNum, int pageSize)
         {
             Guid clientIdGuid = clientId.ToGuid();
+            List<object> allList = new List<object>();
             using (var ctx = new ExaminationEntities())
             {
                 var bloodFat = ctx.BloodFat.Where(b=>b.ClientID==clientIdGuid).ToList();
@@ -258,8 +259,16 @@ namespace Exam.BLL
                 var cardiogram = ctx.Cardiogram.Where(b => b.ClientID == clientIdGuid).ToList();
                 var temperature = ctx.Temperature.Where(b => b.ClientID == clientIdGuid).ToList();
                 var uricAcid = ctx.UricAcid.Where(b => b.ClientID == clientIdGuid).ToList();
-                return new { bloodFat, bloodOxy, bloodPressure, bloodSugar , body, cardiogram, temperature , uricAcid };
+                allList.AddRange(bloodFat);
+                allList.AddRange(bloodOxy);
+                allList.AddRange(bloodPressure);
+                allList.AddRange(bloodSugar);
+                allList.AddRange(body);
+                allList.AddRange(cardiogram);
+                allList.AddRange(temperature);
+                allList.AddRange(uricAcid);
             }
+            return allList.OrderBy(a => a.GetType().GetProperty("ExamDate").GetValue(a)).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
         }
 
     }
