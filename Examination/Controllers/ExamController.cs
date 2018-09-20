@@ -72,16 +72,10 @@ namespace Examination.Controllers
             return new { Result = true };
         }
 
-        public object ExamCardiogram(dynamic obj)
+        public object ExamCardiogram(string value, string clientId, string result,string risk,string advice)
         {
-            var value =(JArray) obj.value;
-            string clientId = obj.clientId;
-            string result = obj.result;
-            string risk = obj.risk;
-            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
-            string dbVal = "["+String.Join(",",value.ToArray().Select(a => a.ToString()).ToArray())+"]";
-            ExamBLL.SaveCardiogram(dbVal, clientId, examRet);
+            ExamBLL.SaveCardiogram(value, clientId, examRet);
             return new { Result = true };
         }
 
