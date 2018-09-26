@@ -10,10 +10,19 @@ namespace Examination.Controllers
     public class UserController : ApiController
     {
         [Authorize]
-        public object ChangePassword(string pwd)
+        public object ChangePassword(string pwd, string oldpwd)
         {
-            UserBLL.UpdatePassword(OnlineUser.User.ID, pwd);
-            return new { Result = true };
+            if (OnlineUser.User.Password == oldpwd)
+            {
+                UserBLL.UpdatePassword(OnlineUser.User.ID, pwd);
+                OnlineUser.User.Password = pwd;
+                return new { Result = true };
+            }
+            else
+            {
+                return new { Result = false, Message="原始密码不正确" };
+            }
+          
         }
 
         public object AddAdvice(string advice)
