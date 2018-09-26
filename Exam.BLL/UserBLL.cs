@@ -25,6 +25,7 @@ namespace Exam.BLL
                 if (user != null)
                 {
                     user.Password = newPwd;
+                    ctx.SaveChanges();
                 }
             }
         }

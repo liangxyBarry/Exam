@@ -12,10 +12,9 @@ namespace Examination.Controllers
         [Authorize]
         public object ChangePassword(string pwd, string oldpwd)
         {
-            if (OnlineUser.User.Password == oldpwd)
+            if (UserBLL.GetUserInfo(OnlineUser.User.UserName, oldpwd)!=null)
             {
-                UserBLL.UpdatePassword(OnlineUser.User.ID, pwd);
-                OnlineUser.User.Password = pwd;
+                UserBLL.UpdatePassword(OnlineUser.User.ID, pwd);    
                 return new { Result = true };
             }
             else
