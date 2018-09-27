@@ -268,7 +268,7 @@ namespace Exam.BLL
                 allList.AddRange(temperature);
                 allList.AddRange(uricAcid);
             }
-            return allList.OrderBy(a => a.GetType().GetProperty("ExamDate").GetValue(a)).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+            return allList.OrderByDescending(a => a.GetType().GetProperty("ExamDate").GetValue(a)).Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
         }
 
     }
