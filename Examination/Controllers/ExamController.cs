@@ -20,8 +20,15 @@ namespace Examination.Controllers
             return new ExamResultModel() { Advice = advice, Result = result, Risk = risk };
         }
 
-        public object ExamBloodPressure(float highVal, float lowVal, float heartRate,string clientId, string result, string risk, string advice)
+        public object ExamBloodPressure(dynamic obj)
         {
+            float highVal = obj.highVal;
+            float lowVal = obj.lowVal;
+            float heartRate = obj.heartRate;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             // var examRet = ExamBLL.ExamBloodPressure(highVal, lowVal);
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodPressure(highVal, lowVal, heartRate, clientId, examRet);
@@ -29,62 +36,104 @@ namespace Examination.Controllers
         }
 
 
-        public object ExamBloodSugar(float value, string clientId, int status, string result, string risk, string advice)
+        public object ExamBloodSugar(dynamic obj)
         {
-            //var examRet = ExamBLL.ExamBloodSugar(value, status);
+            float value = obj.value;
+            string clientId = obj.clientId;
+            int status = obj.status;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodSugar(value, status, clientId, examRet);
             return new { Result = true };
         }
 
 
-        public object ExamBloodFat(float value, string clientId, string result, string risk, string advice)
+        public object ExamBloodFat(dynamic obj)
         {
+            float value = obj.value;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             //var examRet = ExamBLL.SimpleExam("bloodfat", value);
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodFat(value, clientId, examRet);
             return new { Result = true };
         }
 
-        public object ExamBloodOxy(float value, float bpm, float pi, string clientId, string result, string risk, string advice)
+        public object ExamBloodOxy(dynamic obj)
         {
-            //var oxyRet = ExamBLL.SimpleExam("bloodoxy", value);
-            //var bmpRet = ExamBLL.SimpleExam("bmp", value);
-            //var examRet = new { Oxy = oxyRet, BMP = bmpRet };
+            float value = obj.value;
+            float bpm = obj.bpm;
+            float pi = obj.bi;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBloodOxy(value, bpm, pi, clientId, examRet);
             return new { Result = true };
         }
 
-        public object ExamUricAcid(float value, int sex, string clientId, string result, string risk, string advice)
+        public object ExamUricAcid(dynamic obj)
         {
-            //var examRet = ExamBLL.ExamUricAcid(value, sex);
+            float value = obj.value;
+            int sex = obj.sex;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveUricAcid(value, sex, clientId, examRet);
             return new { Result = true };
         }
 
-        public object ExamTemperature(float value, string clientId, string result, string risk, string advice)
+        public object ExamTemperature(dynamic obj)
         {
-            //var examRet = ExamBLL.SimpleExam("temperature", value);
+            float value = obj.value;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveTemperature(value, clientId, examRet);
             return new { Result = true };
         }
 
         [HttpPost]
-        public object ExamCardiogram(string value, string clientId, string result,string risk,string advice)
+        public object ExamCardiogram(dynamic obj)
         {
+            string value = obj.value;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveCardiogram(value, clientId, examRet);
             return new { Result = true };
         }
 
-        public object ExamBody(string weightsum, string BMI, string fatRate, string muscle, 
-            string moisture, string boneMass, string subcutaneousFat, string BMR, string proteinRate, string physicalAge, string weightScore,
-            string clientId, string result, string risk, string advice
+        public object ExamBody(
+            dynamic obj
             )
         {
+            string weightsum = obj.weightsum;
+            string BMI = obj.BMI;
+            string fatRate = obj.fatRate;
+            string muscle = obj.muscle;
+            string moisture = obj.moisture;
+            string boneMass = obj.boneMass;
+            string subcutaneousFat = obj.subcutaneousFat;
+            string BMR = obj.BMR;
+            string proteinRate = obj.proteinRate;
+            string physicalAge = obj.physicalAge;
+            string weightScore = obj.weightScore;
+            string clientId = obj.clientId;
+            string result = obj.result;
+            string risk = obj.risk;
+            string advice = obj.advice;
             var examRet = GetResultModel(result, risk, advice);
             ExamBLL.SaveBody(weightsum, BMI, fatRate, muscle,
             moisture, boneMass, subcutaneousFat, BMR, proteinRate, physicalAge, weightScore,
@@ -93,14 +142,21 @@ namespace Examination.Controllers
         }
 
         [HttpPost]
-        public List<object> ViewHistory(string name, string clientId, DateTime fromDate, DateTime endDate)
+        public List<object> ViewHistory(dynamic obj)
         {
+            string name = obj.name;
+            string clientId = obj.clientId;
+            DateTime fromDate = obj.fromDate;
+            DateTime endDate = obj.endDate;
             return ExamBLL.ViewHistory(name, clientId, fromDate, endDate);
         }
 
         [HttpPost]
-        public object GetAllExamResult(string clientId, int pageNum, int pageSize)
+        public object GetAllExamResult(dynamic obj)
         {
+            string clientId = obj.clientId;
+            int pageNum = obj.pageNum;
+            int pageSize = obj.pageSize;
             return ExamBLL.GetAllExamResult(clientId, pageNum, pageSize);
         }
     }

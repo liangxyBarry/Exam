@@ -215,6 +215,7 @@ namespace Exam.BLL
                         ret.Add(item);
                     }
                 }
+                ret = ret.OrderByDescending(a => a.GetType().GetProperty("ExamDate").GetValue(a)).ToList();
                 return ret;
             }
         }
