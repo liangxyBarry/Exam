@@ -67,7 +67,7 @@ namespace Examination.Controllers
         {
             float value = obj.value;
             float bpm = obj.bpm;
-            float pi = obj.bi;
+            float pi = obj.pi;
             string clientId = obj.clientId;
             string result = obj.result;
             string risk = obj.risk;
@@ -105,7 +105,7 @@ namespace Examination.Controllers
         [HttpPost]
         public object ExamCardiogram(dynamic obj)
         {
-            string value = obj.value;
+            string value = String.Join(",", obj.value);
             string clientId = obj.clientId;
             string result = obj.result;
             string risk = obj.risk;

@@ -85,7 +85,7 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ClientID" Type="uniqueidentifier" />
           <Property Name="ExamDate" Type="datetime" />
-          <Property Name="Cardiogram" Type="varchar" MaxLength="500" />
+          <Property Name="Cardiogram" Type="varchar(max)" />
           <Property Name="ExamRet" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Client">
@@ -184,16 +184,6 @@
           <Property Name="BPM" Type="Double" />
           <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Cardiogram">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="ClientID" Type="Guid" />
-          <Property Name="ExamDate" Type="DateTime" Precision="3" />
-          <Property Name="Cardiogram1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Temperature">
           <Key>
             <PropertyRef Name="ID" />
@@ -228,7 +218,6 @@
         <EntityContainer Name="ExaminationEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BloodFat" EntityType="Self.BloodFat" />
           <EntitySet Name="BloodOxy" EntityType="Self.BloodOxy" />
-          <EntitySet Name="Cardiogram" EntityType="Self.Cardiogram" />
           <EntitySet Name="Temperature" EntityType="Self.Temperature" />
           <EntitySet Name="UricAcid" EntityType="Self.UricAcid" />
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -238,6 +227,7 @@
           <EntitySet Name="Client" EntityType="ExaminationModel.Client" />
           <EntitySet Name="Advice" EntityType="ExaminationModel.Advice" />
           <EntitySet Name="Body" EntityType="ExaminationModel.Body" />
+          <EntitySet Name="Cardiogram" EntityType="ExaminationModel.Cardiogram" />
         </EntityContainer>
         <EntityType Name="BloodPressure">
           <Key>
@@ -315,6 +305,16 @@
           <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ExamDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Cardiogram">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="ClientID" Type="Guid" />
+          <Property Name="ExamDate" Type="DateTime" Precision="3" />
+          <Property Name="Cardiogram1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExamRet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -342,17 +342,6 @@
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
                 <ScalarProperty Name="BPM" ColumnName="BPM" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cardiogram">
-            <EntityTypeMapping TypeName="ExaminationModel.Cardiogram">
-              <MappingFragment StoreEntitySet="Cardiogram">
-                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
-                <ScalarProperty Name="Cardiogram1" ColumnName="Cardiogram" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -468,6 +457,17 @@
                 <ScalarProperty Name="FatRate" ColumnName="FatRate" />
                 <ScalarProperty Name="BMI" ColumnName="BMI" />
                 <ScalarProperty Name="WeightSum" ColumnName="WeightSum" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cardiogram">
+            <EntityTypeMapping TypeName="ExaminationModel.Cardiogram">
+              <MappingFragment StoreEntitySet="Cardiogram">
+                <ScalarProperty Name="ExamRet" ColumnName="ExamRet" />
+                <ScalarProperty Name="Cardiogram1" ColumnName="Cardiogram" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
