@@ -62,7 +62,7 @@ namespace Exam.BLL
         {
             using (var ctx = new ExaminationEntities())
             {
-                var exist = ctx.Client.FirstOrDefault(c => id != c.ID && c.UserID == userId);
+                var exist = ctx.Client.FirstOrDefault(c => id == c.ID && c.UserID == userId);
             }
 
         }
