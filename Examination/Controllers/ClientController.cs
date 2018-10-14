@@ -1,4 +1,5 @@
 ﻿using Exam.BLL;
+using Exam.BLL.Helper;
 using Exam.Model;
 using Newtonsoft.Json;
 using System;
@@ -38,12 +39,20 @@ namespace Examination.Controllers
 
         public object UpdateClient([FromBody]Client client)
         {
-            if (ClientBLL.CheckIsDuplicate(client.ID, client.ClientIdentity))
+            try
             {
-                return new { Success = false, Duplicated = true };
+                if (ClientBLL.CheckIsDuplicate(client.ID, client.ClientIdentity))
+                {
+                    return new { Success = false, Duplicated = true };
+                }
+                ClientBLL.UpdateClient(client);
+                return new { Success = true };
             }
-            ClientBLL.UpdateClient(client);
-            return new { Success = true };
+            catch(Exception ex)
+            {
+                LogHelper.SystemError("client - "+JsonConvert.SerializeObject(client),ex);
+                return ex.ToString();
+            }
         }
 
         public object RemoveClient(Guid id)

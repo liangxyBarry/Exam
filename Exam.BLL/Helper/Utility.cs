@@ -8,7 +8,7 @@ namespace Exam.BLL.Helper
 {
     public static class Utility
     {
-        public static void SetObjectValueWithSamePropName(object src, object target)
+        public static void SetObjectValueWithSamePropName(object src, object target, List<string> ignoreProps)
         {
             if (src == null)
             {
@@ -22,6 +22,11 @@ namespace Exam.BLL.Helper
                 {
                     continue;
                 }
+                if(ignoreProps.Contains(srcProp.Name))
+                {
+                    continue;
+                }
+
                 var targetProp = targetType.GetProperty(srcProp.Name);
                 if (targetProp == null || !targetProp.CanWrite)
                 {

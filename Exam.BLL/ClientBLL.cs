@@ -63,8 +63,9 @@ namespace Exam.BLL
             using (var ctx = new ExaminationEntities())
             {
                 var exist = ctx.Client.FirstOrDefault(c => id == c.ID && c.UserID == userId);
+                ctx.Client.Remove(exist);
+                ctx.SaveChanges();
             }
-
         }
 
 
@@ -72,8 +73,9 @@ namespace Exam.BLL
         {
             using (var ctx = new ExaminationEntities())
             {
-                var dbClient = ctx.Client.FirstOrDefault(c => c.UserID == OnlineUser.User.ID && client.ID == client.ID);
-                Utility.SetObjectValueWithSamePropName(client, dbClient);
+                var dbClient = ctx.Client.FirstOrDefault(c => c.UserID == OnlineUser.User.ID && c.ID == client.ID);
+
+                Utility.SetObjectValueWithSamePropName(client, dbClient, new List<string>() { "ID", "UserID" });
                 ctx.SaveChanges();
             }
         }
