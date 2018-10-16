@@ -15,7 +15,7 @@ namespace Exam.BLL
         {
             using (var ctx = new ExaminationEntities())
             {
-                var list = ctx.Client.Where(c => c.UserID == userId).OrderBy(c => c.Name);
+                var list = ctx.Client.Where(c => c.UserID == userId).OrderByDescending(c => c.CreatedDate);
                 int amt = list.Count();
                 var retList= list.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
                 return new Tuple<List<Client>, int>(retList, amt);

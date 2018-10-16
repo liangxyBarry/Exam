@@ -13,10 +13,10 @@
         <EntityTypeShape EntityType="ExaminationModel.BloodPressure" Width="1.5" PointX="3.25" PointY="7" />
         <EntityTypeShape EntityType="ExaminationModel.Token" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="ExaminationModel.BloodSugar" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="ExaminationModel.Client" Width="1.5" PointX="7.375" PointY="6.75" />
         <EntityTypeShape EntityType="ExaminationModel.Advice" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="ExaminationModel.Body" Width="1.5" PointX="9.375" PointY="0.75" />
         <EntityTypeShape EntityType="ExaminationModel.Cardiogram" Width="1.5" PointX="9.375" PointY="5.75" />
+        <EntityTypeShape EntityType="ExaminationModel.Client" Width="1.5" PointX="7.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

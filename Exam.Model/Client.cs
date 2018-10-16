@@ -25,5 +25,6 @@ namespace Exam.Model
         public Nullable<System.Guid> UserID { get; set; }
         public Nullable<double> Age { get; set; }
         public string Sex { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     }
 }
