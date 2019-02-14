@@ -51,6 +51,7 @@ namespace Exam.BLL
         {
             client.ID = Guid.NewGuid();
             client.UserID = OnlineUser.User.ID;
+            client.CreatedDate = DateTime.Now;
             using(var ctx = new ExaminationEntities())
             {
                 ctx.Client.Add(client);
@@ -75,7 +76,7 @@ namespace Exam.BLL
             {
                 var dbClient = ctx.Client.FirstOrDefault(c => c.UserID == OnlineUser.User.ID && c.ID == client.ID);
 
-                Utility.SetObjectValueWithSamePropName(client, dbClient, new List<string>() { "ID", "UserID" });
+                Utility.SetObjectValueWithSamePropName(client, dbClient, new List<string>() { "ID", "UserID", "CreatedDate" });
                 ctx.SaveChanges();
             }
         }

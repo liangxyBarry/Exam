@@ -48,9 +48,9 @@ namespace WebApi
                 TokenEndpointPath = new PathString("/token"),
                 Provider = new ExamAuthProvider(),
                 RefreshTokenProvider = new ExamRefreshTokenProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(24),
+                AccessTokenExpireTimeSpan = TimeSpan.MaxValue,
                 AuthenticationMode = AuthenticationMode.Active,
-                AllowInsecureHttp = true,
+                AllowInsecureHttp = true
             });
         }
     }
