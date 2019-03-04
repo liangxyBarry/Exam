@@ -27,13 +27,17 @@ namespace Examination.App_Start
             string userName = context.UserName;
             string pwd = context.Password;
             Users user = UserBLL.GetUserInfo(userName,pwd);
-            if (user != null)
+            if (user != null && user.PIsLock!=1)
             {
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim("sub", context.UserName));
                 identity.AddClaim(new Claim("role", "user"));
                 identity.AddClaim(new Claim("userModel", JsonConvert.SerializeObject(user)));
                 context.Validated(identity);
+            }
+            else if (user.PIsLock == 1)
+            {
+                context.SetError("locked","用户被锁定");
             }
 
         }

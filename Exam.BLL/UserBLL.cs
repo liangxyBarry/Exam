@@ -13,7 +13,7 @@ namespace Exam.BLL
         {
             using (var ctx = new ExaminationEntities())
             {
-                return ctx.Users.FirstOrDefault(u => u.UserName.ToLower() == (userName??"").ToLower() && u.Password == pwd);
+                return ctx.Users.FirstOrDefault(u => u.UserName.ToLower() == (userName??"").ToLower() && u.Password == pwd && u.PIsDel!=1);
             }
         }
 

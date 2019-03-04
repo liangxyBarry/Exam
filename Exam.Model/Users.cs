@@ -19,5 +19,7 @@ namespace Exam.Model
         public string Password { get; set; }
         public string FullName { get; set; }
         public string Memo { get; set; }
+        public Nullable<int> PIsDel { get; set; }
+        public Nullable<int> PIsLock { get; set; }
     }
 }
