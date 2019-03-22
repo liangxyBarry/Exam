@@ -35,7 +35,7 @@ namespace Examination.App_Start
                 identity.AddClaim(new Claim("userModel", JsonConvert.SerializeObject(user)));
                 context.Validated(identity);
             }
-            else if (user.PIsLock == 1)
+            else if (user != null && user.PIsLock == 1)
             {
                 context.SetError("locked","用户被锁定");
             }
