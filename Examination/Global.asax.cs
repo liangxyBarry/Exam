@@ -35,9 +35,9 @@ namespace Examination
             string url = Request.Url.ToString();
             StringBuilder sb = new StringBuilder();
             sb.Append(url+"\n");
-            foreach (var param in Request.Params)
+            foreach (string param in Request.Params.AllKeys)
             {
-                sb.AppendFormat("{0}:{1}\n",param, Request.Params[param.ToString()]);
+                sb.AppendFormat("{0}:{1}\n",param, Request.Params[param]);
             }
             LogHelper.SystemError("Application_Error"+ sb.ToString(), Server.GetLastError());
         }
