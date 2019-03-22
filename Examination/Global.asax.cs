@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -31,7 +32,14 @@ namespace Examination
 
         protected void Application_Error()
         {
-            LogHelper.SystemError("Application_Error", Server.GetLastError());
+            string url = Request.Url.ToString();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(url+"\n");
+            foreach (var param in Request.Params)
+            {
+                sb.AppendFormat("{0}:{1}\n",param, Request.Params[param.ToString()]);
+            }
+            LogHelper.SystemError("Application_Error"+ sb.ToString(), Server.GetLastError());
         }
     }
 }
